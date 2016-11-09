@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkDays.WebUI", "WorkDays\WorkDays.WebUI.csproj", "{E3A725CE-2430-43AF-B124-1BE5EE58067B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkDays.Domain", "WorkDays.Domain\WorkDays.Domain.csproj", "{B2FAB495-A917-4B2E-B390-5E87AF4C3C5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkDays.Tests", "WorkDays.Tests\WorkDays.Tests.csproj", "{4E9CB99B-54F2-4FE1-BAF9-1F5C2F4CCD12}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E3A725CE-2430-43AF-B124-1BE5EE58067B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3A725CE-2430-43AF-B124-1BE5EE58067B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3A725CE-2430-43AF-B124-1BE5EE58067B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3A725CE-2430-43AF-B124-1BE5EE58067B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2FAB495-A917-4B2E-B390-5E87AF4C3C5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2FAB495-A917-4B2E-B390-5E87AF4C3C5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2FAB495-A917-4B2E-B390-5E87AF4C3C5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2FAB495-A917-4B2E-B390-5E87AF4C3C5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E9CB99B-54F2-4FE1-BAF9-1F5C2F4CCD12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E9CB99B-54F2-4FE1-BAF9-1F5C2F4CCD12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E9CB99B-54F2-4FE1-BAF9-1F5C2F4CCD12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E9CB99B-54F2-4FE1-BAF9-1F5C2F4CCD12}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

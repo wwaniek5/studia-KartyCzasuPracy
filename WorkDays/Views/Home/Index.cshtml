@@ -1,0 +1,116 @@
+﻿@model WorkDays.Models.UserDateModel
+
+@{
+    ViewBag.Title = "Dni w pracy";
+}
+
+<h2>Wyświetl miesiąc</h2>
+
+
+<style>
+  
+
+    input, label {
+    display:block;
+}
+
+    
+    .Urlop {
+        background-color: powderblue;
+    }
+
+    .UrlopDodatkowy {
+    background-color: skyblue;
+   }
+
+    .L4 {
+    background-color: peachpuff;
+   }
+
+    .toBottom{
+        margin-top:17px;
+    }
+
+    
+</style>
+<p>
+    @using (Html.BeginForm())
+    {
+        <div style="color:red;">
+            @Html.ValidationSummary()
+            </div>
+            <div style="float:left;margin-right:20px;">
+                <label>Wszyscy z umową o pracę:</label>
+                @Html.CheckBoxFor(x => x.AllEmployedUsersSelected, new Dictionary<string, object> { { "onclick", "AllEmployedChecked.call(this)" } })
+            </div>
+            <div style="float:left;margin-right:20px;">
+                <label>Wszyscy:</label>
+                @Html.CheckBoxFor(x => x.AllUsersSelected, new Dictionary<string, object>{ {"onclick","AllChecked.call(this)"}})
+            </div>
+            <div style="float:left;margin-right:20px;">
+                <label>Login np. jan.kowalski:</label>
+                @((Model.AllUsersSelected == true || Model.AllEmployedUsersSelected == true) ?
+                    @Html.TextBoxFor(x => x.UserName, new { id = "UserNameBox", @disabled = "disabled" }) :
+                     @Html.TextBoxFor(x => x.UserName, new { id = "UserNameBox" })
+                )
+            </div>
+            <div style="float:left;margin-right:20px;">
+                <label>Miesiąc:</label>
+                @Html.DropDownListFor(x => x.SelectedMonth, Model.Months, new { style = "height:25px" })
+            </div>
+            <div style="float:left;margin-right:20px;">
+                <label>Rok:</label>
+                @Html.TextBoxFor(x => x.SelectedYear, new { style = "width:50px" })
+            </div>
+            <div>
+                <input class="btn btn-primary toBottom" type="submit" name="ShowButton"  value="Pokaż" />
+                <input class="btn btn-primary toBottom" type="submit" name="PrintButton" value="Drukuj" />
+                <input class="btn btn-primary toBottom" type="submit" name="ExcelButton" value="Ściągnij excela" />
+                @Html.ActionLink("Drukuj pustą kartę","PrintEmpty",null, new { @class = "btn btn-primary toBottom"  })
+            </div>
+
+
+            }
+</p>
+
+@if(Model.Timetables!=null){
+    @Html.Partial("TimeTables", Model.Timetables)
+}
+   
+
+
+          
+        
+
+        
+<script type="text/javascript">
+    function AllChecked() {
+        if (this.checked) {
+            document.getElementById("AllEmployedUsersSelected").checked = false;
+            disableTextBox();
+        } else {
+            enableTextBox()
+        }
+        
+    }
+
+    function AllEmployedChecked() {
+        if (this.checked) {
+            document.getElementById("AllUsersSelected").checked = false;
+            disableTextBox();
+        } else {
+            enableTextBox()
+        }
+
+    }
+
+    function disableTextBox() {
+        var textbox = document.getElementById("UserNameBox");
+        textbox.setAttribute('disabled', 'disabled');
+        textbox.value = '';
+    }
+
+    function enableTextBox() {
+        document.getElementById("UserNameBox").removeAttribute('disabled');
+    }
+</script>

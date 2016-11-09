@@ -1,0 +1,228 @@
+﻿@model  WorkDays.Domain.Timetable
+
+<style>
+  
+
+    table.visible td, tr, th {
+        height: 25px;
+        white-space: nowrap;
+        border: 1px solid black;
+        padding: 2px;
+        width: 5%;
+    }
+
+
+
+    table.white td, tr {
+        height: 25px;
+        white-space: nowrap;
+        border: 0px solid blue;
+        padding: 2px;
+
+    }
+
+
+    div {
+        page-break-after: avoid;
+        page-break-before: avoid;
+        page-break-inside: avoid;
+    }
+</style>
+
+<div>
+    <div>
+    @if (Model.Empty==false)
+    {
+        <div>
+            <div>
+                imię i nazwisko: @Model.Worker
+            </div>
+            <div>
+                stanowisko: @Model.Position
+            </div>
+            <div>
+                firma: @Model.Company
+            </div>
+            <div>
+                data: @Model.Date.ToString("MMMM yyyy")
+            </div>
+        </div>
+    }
+    else
+    {
+        <div>
+            <div>
+                imię i nazwisko: ......................
+            </div>
+            <div>
+                stanowisko: ...........................
+            </div>
+            <div>
+                firma:    ................................
+            </div>
+            <div>
+                miesiąc: ................................
+            </div>
+        </div>
+    }
+  </div>
+            <table class="visible" style="width: 100%;">
+                <caption>
+                    Indywidualna karta czasu pracy
+                </caption>
+                <thead>
+                    <tr>
+                        <th>Dzień</th>
+                        <th ></th>
+                        <th >Dzień</th>
+                        <th ></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < (int)Math.Ceiling(Model.Days.Count() / 2.0); i++)
+            {
+                        <tr>
+                            <td>
+                             @Model.Days[i].DayOfMonth
+                            </td>
+                            <td>
+                                @WorkDays.Domain.Entities.Day.ConvertStatusToAbreviation(Model.Days[i].Status)
+                            
+                            
+                            </td>
+
+                            @if (i + (int)Math.Ceiling(Model.Days.Count() / 2.0) < Model.Days.Count())
+                            {
+                                <td>
+                                    @Model.Days[i + (int)Math.Ceiling(Model.Days.Count() / 2.0)].DayOfMonth
+                                </td>
+                                <td>@WorkDays.Domain.Entities.Day.ConvertStatusToAbreviation(Model.Days[i + (int)Math.Ceiling(Model.Days.Count() / 2.0)].Status)</td>
+                            }
+
+
+
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+            <br>
+
+
+            <table class="white">
+                <tr>
+                    <td>godziny przepracowane</td>
+@if (Model.Empty )
+{
+    <td>............</td>
+}
+else
+{
+    <td>@Model.WorkedHours</td>
+}
+                    
+                </tr>
+                <tr>
+                    <td>nadgodziny</td>
+                    <td>............</td>
+                </tr>
+            </table>
+
+            <br>
+
+
+            <table class="white">
+                <tr>
+                    <td align="right"><b>8</b></td>
+                    <td>liczba przepracowanych godzin</td>
+                </tr>
+                <tr>
+                    <td align="right"><b>Uw</b></td>
+                    <td>urlop wypoczynkowy</td>
+                </tr>
+                <tr>
+                    <td align="right"><b>Ch</b></td>
+                    <td>Choroba</td>
+                </tr>
+                <tr>
+                    <td align="right"><b>Op</b></td>
+                    <td>Opieka</td>
+                </tr>
+                <tr>
+                    <td align="right"><b>Uok</b></td>
+                    <td>Urlop okolicznościowy</td>
+                </tr>
+                <tr>
+                    <td align="right"><b>Sz</b></td>
+                    <td>Szkolenie</td>
+                </tr>
+                <tr>
+                    <td align="right"><b>Um</b></td>
+                    <td>Urlop macierzyński</td>
+                </tr>
+                <tr>
+                    <td align="right"><b>N</b></td>
+                    <td>Nieobecność nieusprawiedliwiona</td>
+                </tr>
+                <tr>
+                    <td align="right"><b>Ng</b></td>
+                    <td>Nadgodziny</td>
+
+                </tr>
+                <tr>
+                    <td align="right"><b>Uj</b></td>
+                    <td>Urlop ojcowski</td>
+
+                </tr>
+            </table>
+
+            <br>
+
+            <table class="white">
+                <tr>
+                    <td>....................................................</td>
+                </tr>
+                <tr>
+                    <td>podpis</td>
+                </tr>
+
+            </table>
+
+
+</div>
+
+@helper GetAbbreviation(WorkDays.Domain.Entities.Status status)
+{
+    
+        switch (status)
+        {
+            case WorkDays.Domain.Entities.Status.Free:
+                <text>
+                    -
+                </text>
+                break;
+            case WorkDays.Domain.Entities.Status.Normal:
+                <text>
+                    8
+                </text>
+                break;
+            case WorkDays.Domain.Entities.Status.Urlop:
+                <text>
+                    Uw
+                </text>
+                break;
+            case WorkDays.Domain.Entities.Status.UrlopDodatkowy:
+                <text>
+                    Uok
+                </text>
+                break;
+            case WorkDays.Domain.Entities.Status.L4:
+                <text>
+                    Ch
+                </text>
+                break;
+
+        }
+    
+}

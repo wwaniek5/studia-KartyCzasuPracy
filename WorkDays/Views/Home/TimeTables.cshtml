@@ -1,0 +1,8 @@
+﻿@model IEnumerable<WorkDays.Domain.Timetable>
+
+
+   @foreach (WorkDays.Domain.Timetable m in Model)
+        {
+              @Html.Partial("TableViewForPrinting", m)
+        }
+    

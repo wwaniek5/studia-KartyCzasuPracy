@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="JiraModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="app_user">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="user_key" Type="varchar(max)" Nullable="false" />
+          <Property Name="lower_user_name" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="bts_projectroles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar(max)" Nullable="false" />
+          <Property Name="date_from" Type="datetime" Nullable="false" />
+          <Property Name="date_to" Type="datetime" Nullable="false" />
+          <Property Name="project" Type="varchar(max)" />
+          <Property Name="group_name" Type="varchar(max)" />
+          <Property Name="role" Type="varchar(max)" Nullable="false" />
+          <Property Name="agreement_type" Type="varchar(max)" />
+          <Property Name="role_agreement" Type="varchar(max)" />
+          <Property Name="agreement_company" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="worklog">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="issueid" Type="int" />
+          <Property Name="AUTHOR" Type="varchar(max)" Nullable="false" />
+          <Property Name="grouplevel" Type="varchar(max)" />
+          <Property Name="rolelevel" Type="varchar(max)" />
+          <Property Name="worklogbody" Type="varchar(max)" />
+          <Property Name="Created" Type="datetime" />
+          <Property Name="UPDATEAUTHOR" Type="varchar(max)" />
+          <Property Name="UPDATED" Type="datetime" />
+          <Property Name="STARTDATE" Type="datetime" />
+          <Property Name="timeworked" Type="int" />
+        </EntityType>
+        <EntityContainer Name="JiraModelStoreContainer">
+          <EntitySet Name="app_user" EntityType="Self.app_user" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bts_projectroles" EntityType="Self.bts_projectroles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="worklog" EntityType="Self.worklog" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="JiraModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="app_user">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="user_key" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lower_user_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="bts_projectroles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="date_from" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="date_to" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="project" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="group_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="role" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="agreement_type" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="role_agreement" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="agreement_company" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="worklog">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="issueid" Type="Int32" />
+          <Property Name="AUTHOR" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="grouplevel" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="rolelevel" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="worklogbody" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Created" Type="DateTime" Precision="3" />
+          <Property Name="UPDATEAUTHOR" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UPDATED" Type="DateTime" Precision="3" />
+          <Property Name="STARTDATE" Type="DateTime" Precision="3" />
+          <Property Name="timeworked" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="jiradbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="app_user" EntityType="Self.app_user" />
+          <EntitySet Name="bts_projectroles" EntityType="Self.bts_projectroles" />
+          <EntitySet Name="worklogs" EntityType="Self.worklog" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="JiraModelStoreContainer" CdmEntityContainer="jiradbEntities">
+          <EntitySetMapping Name="app_user">
+            <EntityTypeMapping TypeName="JiraModel.app_user">
+              <MappingFragment StoreEntitySet="app_user">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="user_key" ColumnName="user_key" />
+                <ScalarProperty Name="lower_user_name" ColumnName="lower_user_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bts_projectroles">
+            <EntityTypeMapping TypeName="JiraModel.bts_projectroles">
+              <MappingFragment StoreEntitySet="bts_projectroles">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="date_from" ColumnName="date_from" />
+                <ScalarProperty Name="date_to" ColumnName="date_to" />
+                <ScalarProperty Name="project" ColumnName="project" />
+                <ScalarProperty Name="group_name" ColumnName="group_name" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="agreement_type" ColumnName="agreement_type" />
+                <ScalarProperty Name="role_agreement" ColumnName="role_agreement" />
+                <ScalarProperty Name="agreement_company" ColumnName="agreement_company" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="worklogs">
+            <EntityTypeMapping TypeName="JiraModel.worklog">
+              <MappingFragment StoreEntitySet="worklog">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="issueid" ColumnName="issueid" />
+                <ScalarProperty Name="AUTHOR" ColumnName="AUTHOR" />
+                <ScalarProperty Name="grouplevel" ColumnName="grouplevel" />
+                <ScalarProperty Name="rolelevel" ColumnName="rolelevel" />
+                <ScalarProperty Name="worklogbody" ColumnName="worklogbody" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="UPDATEAUTHOR" ColumnName="UPDATEAUTHOR" />
+                <ScalarProperty Name="UPDATED" ColumnName="UPDATED" />
+                <ScalarProperty Name="STARTDATE" ColumnName="STARTDATE" />
+                <ScalarProperty Name="timeworked" ColumnName="timeworked" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

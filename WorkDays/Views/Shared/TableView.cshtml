@@ -1,0 +1,54 @@
+﻿@model  WorkDays.Domain.Timetable
+
+<style>
+    tr td{
+    width:1%;
+    white-space:nowrap;
+}
+    </style>
+
+    <div class="grid">
+        <table style="width: 100%;" class="table table-bordered">
+            <caption>
+                @Model.Author
+            </caption>
+            <thead>
+                <tr>
+                    <th>Dzień</th>
+                    <th>Godzina rozpoczęcia</th>
+                    <th>Podpis pracownika</th>
+                    <th>Godzina zakończenia</th>
+                    <th>Podpis pracownika</th>
+                    <th>Podpis komórki</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (WorkDays.Domain.Entities.Day day in Model.Days)
+                {
+                    <tr class='@(day.status.ToString())'>
+                        <td>@day.DayOfMonth</td>
+                        
+
+
+                        <td>
+                            @if (day.startTime.HasValue && day.status == WorkDays.Domain.Entities.Day.Status.Normal)
+                            {
+                                @day.startTime.Value.ToString("HH:mm")
+                            }                  
+                        </td>
+                        <td></td>
+                        <td>
+                            @if (day.endTime.HasValue && day.status == WorkDays.Domain.Entities.Day.Status.Normal)
+                            {
+                                @day.endTime.Value.ToString("HH:mm")
+                            }
+                        </td>
+                        
+                        <td></td>
+                        <td></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+

@@ -1,0 +1,14 @@
+﻿@model IEnumerable<WorkDays.Domain.Timetable>
+
+@{
+    ViewBag.Title = "Print";
+    Layout = "~/Views/Home/_PrintLayout.cshtml";
+}
+
+@Html.Partial("TimeTables", Model)
+
+
+<script>
+    window.onload = function () { window.print(); }
+</script>
+
